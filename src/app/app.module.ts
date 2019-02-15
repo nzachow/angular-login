@@ -12,19 +12,19 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 import { TokenInterceptor } from './services/authentication.interceptor';
-import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatInputModule,
          MatButtonModule,
-         MatCardModule } from '@angular/material'; 
+         MatCardModule } from '@angular/material';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    UserDetailsComponent
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

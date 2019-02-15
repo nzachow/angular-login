@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
         password: new FormControl('', [ Validators.required]),
     });
 
-    constructor(private auth: AuthenticationService) { }
+    constructor(private auth: AuthenticationService, private router: Router) { }
 
     ngOnInit() {
     }
@@ -30,18 +31,25 @@ export class LoginComponent implements OnInit {
                 resp => {
                     this.logged = resp;
                     this.loginError = false;
+                    this.authenticating = false;
+                    console.log("loginForm resp =", resp);
+                    if (this.logged) {
+                        console.log("Está logado!");
+                        this.router.navigate(['/user']);
+                    }
                 },
                 error => {
                     console.log("erro ao autenticar");
                     this.logged = false;
                     this.loginError = true;
+                    this.authenticating = false;
                 }
             );
         } else {
             this.logged = false;
             this.loginError = true;
         }
-        this.authenticating = false;
+        console.log("Terminou de autenticar....");
     }
 
 }

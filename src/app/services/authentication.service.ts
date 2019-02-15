@@ -7,6 +7,7 @@ import { map, filter, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthenticationService {
+    isLogged = false;
 
     // endpoint = "https://jsonplaceholder.typicode.com/posts/1";
     endpoint = "https://reqres.in/api/login";
@@ -20,8 +21,10 @@ export class AuthenticationService {
                 console.log("resp ", resp);
                 if (resp["token"] != undefined) {
                     localStorage.setItem("token", resp['token']);
+                    this.isLogged = true;
                     return true;
                 }
+                this.isLogged = false;
                 return false;
 		}));
 	}
