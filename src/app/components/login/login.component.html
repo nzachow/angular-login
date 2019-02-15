@@ -1,0 +1,14 @@
+<mat-card style="max-width: 400px;">
+    <div *ngIf="loginError">
+    Ususário ou senha incorretos
+    </div>
+    <form [formGroup]="loginForm">
+        <div>
+            <input matInput placeholder="Email" value="" formControlName="email" type="email">
+        </div>
+        <div>
+            <input matInput placeholder="Senha" value="" formControlName="password" type="password">
+        </div>
+        <button mat-button type="submit" (click)="clickLogin()" [disabled]="authenticating" > Login </button>
+    </form>
+</mat-card>
